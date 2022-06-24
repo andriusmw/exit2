@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { loginUserService } from "../services";
 
 export const LoginPage = () => {
@@ -6,6 +7,8 @@ export const LoginPage = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [error,setError] = useState("");
+    //cargamos el contexto
+    const {setToken} = useContext(AuthContext)
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -14,6 +17,8 @@ export const LoginPage = () => {
             const data = await loginUserService({email,password});
 
             console.log(data);
+            setToken(data.token);
+            //Le pasa el token al context
         } catch (error) {
             setError(error.message)
         }
