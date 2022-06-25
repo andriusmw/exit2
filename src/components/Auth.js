@@ -4,15 +4,16 @@ import { AuthContext } from "../context/AuthContext"
 
 export const Auth = () => {
     //recibimos el token del usuario con el context
-    const {token} = useContext(AuthContext);
+    const { user, logout} = useContext(AuthContext);
+  
 
 
-    return(
-        <ul>
+    return user ? (<p>Bienvenida/o {user.name}
+                    <button onClick={() => logout() } >Logout</button> 
+    </p> ) : (<ul>
             <li> <Link to="/register">Register</Link> </li>
             <li> <Link to="/login">Login</Link> </li>
          
-            <li>Token: {token}</li>
         </ul>
-    )
-}
+    );
+};

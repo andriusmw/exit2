@@ -46,3 +46,26 @@ export const loginUserService = async ({email,password}) => {
     return json.data;
 
 };
+
+//-------------------- GET USER DATA -------------------------
+
+export const getMyUserDataService = async (email) => {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${email}`);
+    //Le paso el email por procs en la ruta. Lleva método GET por defecto.
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        throw new Error(json.message)
+        //Si hay error muestra el error
+    } else {
+        console.log("else")
+        console.log(json)
+        console.log(json.data)
+        console.log("response")
+        console.log(response)
+        return json.data;
+        //Sino hay error devuelve el json.data
+    }
+
+}

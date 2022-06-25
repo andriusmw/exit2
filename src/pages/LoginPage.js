@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { loginUserService } from "../services";
 
@@ -8,7 +9,12 @@ export const LoginPage = () => {
     const [password,setPassword] = useState("");
     const [error,setError] = useState("");
     //cargamos el contexto
-    const {setToken} = useContext(AuthContext)
+    const {login} = useContext(AuthContext)
+    //cargamos navigate
+    const navigate =useNavigate();
+    const {setEmailAuth} = useContext(AuthContext)
+    //Cargamos el setemailauth para poder usarlo aquí y tener email en el contexto
+    //para poder pasarlo a la funcion del contexto: getmyUserDataService
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -17,8 +23,12 @@ export const LoginPage = () => {
             const data = await loginUserService({email,password});
 
             console.log(data);
-            setToken(data.token);
+            login(data.token);
             //Le pasa el token al context
+            setEmailAuth(email);
+            //le pasamos el email al estado de auth para poder usarlo luego
+            navigate("/");
+            //redigirimos al home
         } catch (error) {
             setError(error.message)
         }
