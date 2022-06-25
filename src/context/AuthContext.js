@@ -21,9 +21,9 @@ export const AuthProviderComponent = ({children}) => {
             try {
                 const data = await getMyUserDataService(emailAuth)
                 //conseguir acceso a email
-                console.log("authcontext")
-                console.log(emailAuth)
-                console.log(data)
+                //console.log("authcontext")
+                //console.log(emailAuth)
+                //console.log(data)
                 setUser(data);
             } catch (error) {
                logout();

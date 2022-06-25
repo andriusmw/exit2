@@ -69,3 +69,24 @@ export const getMyUserDataService = async (email) => {
     }
 
 }
+
+//--------------------------- CREATE ENTRY ----------------------
+
+export const sendEntryService = async ({data, token}) => {
+    const response = await fetch(`${process.end.REACT_APP_BACKEND}/entries`,{
+        method: "POST",
+        body: data,
+        headers: {
+            Authorization: token
+        },
+    });
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        console.log(json)
+        throw new Error(json.message);
+    }
+
+    return json.data;
+}
