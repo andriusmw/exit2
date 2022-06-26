@@ -73,11 +73,15 @@ export const getMyUserDataService = async (email) => {
 //--------------------------- CREATE ENTRY ----------------------
 
 export const sendEntryService = async ({data, token}) => {
-    const response = await fetch(`${process.end.REACT_APP_BACKEND}/entries`,{
+    console.log("token")
+    console.log(token)
+    console.log("body.data")
+    console.log(data)
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/entries`,{
         method: "POST",
         body: data,
         headers: {
-            Authorization: token
+            Authorization: "BEARER " +  token,
         },
     });
 
@@ -89,4 +93,4 @@ export const sendEntryService = async ({data, token}) => {
     }
 
     return json.data;
-}
+};
