@@ -23,8 +23,10 @@ export const AuthProviderComponent = ({children}) => {
                 //conseguir acceso a email
                 //console.log("authcontext")
                 //console.log(emailAuth)
-                //console.log(data)
+                console.log(data)
+                console.log(data.role)
                 setUser(data);
+
             } catch (error) {
                logout();
             }
