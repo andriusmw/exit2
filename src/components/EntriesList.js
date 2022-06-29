@@ -1,11 +1,11 @@
 import { Entry } from "./Entry";
 
-export const EntriesList = ({entries}) => {
+export const EntriesList = ({entries, removeEntry}) => {
     return entries.length ? (
     <ul>
         {entries.map((entry) => (
         <li key={entry.id}>
-            <Entry entry={entry} /> 
+            <Entry entry={entry} removeEntry={removeEntry} /> 
         </li>
         ))}
     </ul>

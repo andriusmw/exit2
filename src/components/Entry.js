@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import {AuthContext} from "../context/AuthContext"
 import { deleteEntryService } from "../services"
 
-export const Entry = ({entry}) => {
+export const Entry = ({entry, removeEntry}) => {
   //importamos el contexto del usuario
   const {user, token} = useContext(AuthContext);
   const [error, setError] = useState("");
@@ -11,7 +11,10 @@ export const Entry = ({entry}) => {
   //creamos funcion deleteEntry
   const deleteEntry = async (id) => {
       try {
+        //primero lo borra usando el service
         await deleteEntryService({id, token})
+        //removeEntry lo quita del estado de entries
+        removeEntry(id);
       } catch (error) {
         setError(error.message)
       } 
