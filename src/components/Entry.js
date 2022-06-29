@@ -1,6 +1,22 @@
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import {AuthContext} from "../context/AuthContext"
+import { deleteEntryService } from "../services"
 
 export const Entry = ({entry}) => {
+  //importamos el contexto del usuario
+  const {user, token} = useContext(AuthContext);
+  const [error, setError] = useState("");
+
+  //creamos funcion deleteEntry
+  const deleteEntry = async (id) => {
+      try {
+        await deleteEntryService({id, token})
+      } catch (error) {
+        setError(error.message)
+      } 
+  }
+
     return <article>
         <h2> 
             <Link to={`/entry/${entry.id}`}>  {entry.title} </Link>  
@@ -16,6 +32,13 @@ export const Entry = ({entry}) => {
       <p>Votes: {entry.votes} </p>
       <p>Status: {entry.status}</p>
 
+      
+        {user && user.role === "admin" ? (
+        <section>
+          <button onClick={() => deleteEntry(entry.id)} >Delete Entry</button>
+          {error ? <p>{error} </p> : null }
+        </section>
+        ) : null}
         
     </article>
 }
