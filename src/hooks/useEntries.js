@@ -27,7 +27,11 @@ const useEntries = () => {
         loadEntries();
     }, []);
 
-    return { entries, loading, error};
+    const addEntry = (entry) => {
+        setEntries([entry,...entries]);
+    };
+
+    return { entries, loading, error, addEntry};
         
 };
 

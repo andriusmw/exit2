@@ -18,7 +18,7 @@ export const getAllEntriesWithVotesService = async () => {
 //poner aquí servicio getSingleEntryService
 
 export const getSingleEntryService = async (id) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND}/entry/${id}`);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/entries/votes/${id}`);
 
     const json = await response.json();
 
@@ -117,6 +117,6 @@ export const sendEntryService = async ({data, token}) => {
         console.log(json)
         throw new Error(json.message);
     }
-
+   
     return json.data;
 };

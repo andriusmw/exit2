@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { sendEntryService } from "../services";
 
-export const NewEntry = () => {
+export const NewEntry = ({addEntry}) => {
     const [error, setError] = useState("");
     const [sending, setSending] = useState(false);
     const {token} = useContext(AuthContext)
@@ -12,7 +12,6 @@ export const NewEntry = () => {
     const [city, setCity] = useState("");
     const [neigh, setNeigh] = useState("");
     const [status, setStatus] = useState("");
-    const [userId, setUserId] = useState("");
 
 
     
@@ -34,6 +33,7 @@ export const NewEntry = () => {
             const entry = await sendEntryService({data,token});
             
             console.log(entry);
+            addEntry(entry);
         } catch (error) {
             console.log(error)
             console.log(error.message)
@@ -73,10 +73,7 @@ export const NewEntry = () => {
             <label htmlFor="status">Status: </label>
             <input type="text" id="status" name="status" required onChange={(e) => setStatus(e.target.value)} />
         </fieldset>
-         <fieldset>
-            <label htmlFor="user_id">user_id: </label>
-            <input type="text" id="user_id" name="user_id" required onChange={(e) => setUserId(e.target.value)} />
-         </fieldset>
+        
             <button>Send Entry</button>
             {sending ? <p>Sending Entry</p> : null}
             {error ? <p>{error} </p> : null}

@@ -5,6 +5,7 @@ import { getMyUserDataService } from "../services";
 export const AuthContext = createContext();
 
 export const AuthProviderComponent = ({children}) => {
+    //console.log(localStorage.getItem("token"))
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState(null); 
     const [emailAuth, setEmailAuth] = useState(null);
@@ -28,6 +29,7 @@ export const AuthProviderComponent = ({children}) => {
                 setUser(data);
 
             } catch (error) {
+                console.log("logout por error")
                logout();
             }
         }

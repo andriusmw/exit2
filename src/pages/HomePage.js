@@ -7,7 +7,7 @@ import { ErrorMessage } from "../components/ErrorMesage";
 
 export const HomePage =  () => {
 
-    const {entries, loading, error} = useEntries();
+    const {entries, loading, error, addEntry} = useEntries();
     const {user} = useContext(AuthContext);
 
     if (loading) return <p>cargando entries...</p>;
@@ -23,7 +23,7 @@ export const HomePage =  () => {
     //la propiedad role de null. Y se j*de la app.
 
     return <section>
-       {user ? (user.role === "admin") ? <NewEntry/> : null : null}
+       {user && (user.role === "admin") ? <NewEntry addEntry={addEntry} /> : null }
 
         <h1>Últimos Entradas</h1>
         <EntriesList entries={entries} />
