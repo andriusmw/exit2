@@ -29,3 +29,5 @@ export const HomePage =  () => {
         <h1>Últimos Entradas</h1>
         <EntriesList entries={entries} removeEntry={removeEntry} />
     </section>
+
+}
