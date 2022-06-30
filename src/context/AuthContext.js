@@ -1,3 +1,4 @@
+
 import { createContext, useEffect } from "react";
 import { useState } from "react";
 import { getMyUserDataService } from "../services";
@@ -52,3 +53,4 @@ export const AuthProviderComponent = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+

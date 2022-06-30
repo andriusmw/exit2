@@ -1,3 +1,4 @@
+
 import { Link} from "react-router-dom"
 
 export const ErrorMessage = ({message}) => {
@@ -7,4 +8,5 @@ export const ErrorMessage = ({message}) => {
         <Link to="/">Go back to Home Page</Link>
     </>
     )
+
 };

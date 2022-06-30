@@ -1,3 +1,4 @@
+
 import { useContext, useState } from "react"
 import { AuthContext} from "../context/AuthContext" 
 import { NewEntry } from "../components/NewEntry";
@@ -7,7 +8,7 @@ import { ErrorMessage } from "../components/ErrorMesage";
 
 export const HomePage =  () => {
 
-    const {entries, loading, error, addEntry} = useEntries();
+    const {entries, loading, error, addEntry, removeEntry} = useEntries();
     const {user} = useContext(AuthContext);
 
     if (loading) return <p>cargando entries...</p>;
@@ -26,6 +27,5 @@ export const HomePage =  () => {
        {user && (user.role === "admin") ? <NewEntry addEntry={addEntry} /> : null }
 
         <h1>Últimos Entradas</h1>
-        <EntriesList entries={entries} />
+        <EntriesList entries={entries} removeEntry={removeEntry} />
     </section>
-}

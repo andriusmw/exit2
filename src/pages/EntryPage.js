@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom"
 import useEntry from "../hooks/useEntry";
 import { ErrorMessage } from "../components/ErrorMesage";
@@ -20,4 +21,5 @@ export const EntryPage = () => {
        <Entry entry={entry}/>
     </section>
     );
+
 };

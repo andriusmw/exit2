@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUserService } from "../services";
@@ -70,4 +71,5 @@ export const RegisterPage = () => {
     </section>
     );
     //{error ? <p>{error}</p> : null} --> si hay un error al darle al submit se muestra
+
 };

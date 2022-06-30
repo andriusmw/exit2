@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { getAllEntriesWithVotesService } from "../services";
 
@@ -27,11 +28,17 @@ const useEntries = () => {
         loadEntries();
     }, []);
 
+    //función para añadir entradas automáticamente
     const addEntry = (entry) => {
         setEntries([entry,...entries]);
     };
 
-    return { entries, loading, error, addEntry};
+    //función para que se desparezcan las entradas borradas
+    const removeEntry = (id) => {
+        setEntries(entries.filter((entry) => entry.id !== id))
+    };
+
+    return { entries, loading, error, addEntry, removeEntry};
         
 };
 
