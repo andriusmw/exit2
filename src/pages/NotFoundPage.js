@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 
 export const NotFoundPage = () => {
@@ -7,4 +8,5 @@ export const NotFoundPage = () => {
                 <Link to={'/'} >Volver al Inicio</Link>
             </section>
     );
+
 };

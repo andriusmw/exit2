@@ -1,3 +1,4 @@
+
 //poner aquí servicio getAllEntrysService
 //WITHVOTES
 
@@ -75,26 +76,30 @@ export const loginUserService = async ({email,password}) => {
 
 //-------------------- GET USER DATA -------------------------
 
-export const getMyUserDataService = async (email) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${email}`);
-    //Le paso el email por procs en la ruta. Lleva método GET por defecto.
+export const getMyUserDataService = async (token) => {
+  // Pasamos token como parámetro.
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/users/profile`, // Hacemos el fetch al nuevo endpoint getUserProfile.
+    { headers: { Authorization: `Bearer ${token}` } } // Enviamos el token en los headers.
+  );
+  //Le paso el email por procs en la ruta. Lleva método GET por defecto.
 
-    const json = await response.json();
+  const json = await response.json();
 
-    if(!response.ok) {
-        throw new Error(json.message)
-        //Si hay error muestra el error
-    } else {
-        console.log("else")
-        console.log(json)
-        console.log(json.data)
-        console.log("response")
-        console.log(response)
-        return json.data;
-        //Sino hay error devuelve el json.data
-    }
+  if (!response.ok) {
+    throw new Error(json.message);
+    //Si hay error muestra el error
+  } else {
+    console.log("else");
+    console.log(json);
+    console.log(json.data);
+    console.log("response");
+    console.log(response);
+    return json.data;
+    //Sino hay error devuelve el json.data
+  }
+};
 
-}
 
 //--------------------------- CREATE ENTRY ----------------------
 

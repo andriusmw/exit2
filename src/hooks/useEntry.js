@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react"
 import { getSingleEntryService } from "../services";
 
@@ -27,5 +28,6 @@ const useEntry = (id) => {
 
     return {entry, loading, error};
 }
+
 
 export default useEntry;

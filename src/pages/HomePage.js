@@ -1,3 +1,4 @@
+
 import { useContext, useState } from "react"
 import { AuthContext} from "../context/AuthContext" 
 import { NewEntry } from "../components/NewEntry";
@@ -28,4 +29,3 @@ export const HomePage =  () => {
         <h1>Últimos Entradas</h1>
         <EntriesList entries={entries} removeEntry={removeEntry} />
     </section>
-}

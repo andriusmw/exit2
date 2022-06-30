@@ -1,3 +1,4 @@
+
 import { Entry } from "./Entry";
 
 export const EntriesList = ({entries, removeEntry}) => {
@@ -12,4 +13,5 @@ export const EntriesList = ({entries, removeEntry}) => {
     ) :( 
     <p>No hay entradas disponibles...</p>
     );
+
 };

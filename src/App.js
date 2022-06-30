@@ -1,4 +1,5 @@
-import logo from './logo.svg';
+
+
 import './App.css';
 import { Header} from "./components/Header"
 import { Footer} from "./components/Footer"
@@ -10,24 +11,26 @@ import { RegisterPage} from "./pages/RegisterPage"
 import { NotFoundPage } from './pages/NotFoundPage';
 
 
+
 function App() {
   return (
     <>
-    <Header />
-     <main>
-       <Routes>
-          <Route path="/" element={<HomePage />}  /> 
-          <Route path="/register" element={<RegisterPage/> }  /> 
-          <Route path="/login" element={<LoginPage />  }  /> 
-          <Route path="/entry/:id" element={<EntryPage /> }  /> 
-          <Route path="*" element={<NotFoundPage/> }  /> 
-        
-       </Routes>
-    
-     </main>
-    <Footer />
-    </>
 
+   
+
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/entry/:id" element={<EntryPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+      <Footer />
+
+    </>
   );
 }
 
