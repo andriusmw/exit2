@@ -143,21 +143,25 @@ export const deleteEntryService = async ({id, token}) => {
 
 //---------------------------------- VOTE ENTRY SERVICE ------------------------
 
-export const voteEntryService = async ({user.id, entry.id, token}) => {
+export const voteEntryService = async ({userid, entryid, token}) => {
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/votes/`,{
         method: "POST",
         headers: {
             Authorization: "BEARER " + token,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({user.id,entry.id})
+        body: JSON.stringify({userid, entryid})
     });
 
+    console.log("userid=" + userid + "entryid=" + entryid )
+    //le estoy pasando undefined a userid y entryid
     const json = await response.json();
 
     if(!response.ok) {
+        alert("ya has votado esta entrada")
         throw new Error(json.message);
+        
     } else {
-        alert("Usuario registrado, comprueba tu correo para activar tu cuenta")
+        alert("votado correctamente")
     }
 };

@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {AuthContext} from "../context/AuthContext"
 import { deleteEntryService } from "../services"
+import { voteEntryService } from "../services"
 
 export const Entry = ({entry, removeEntry}) => {
   //importamos el contexto del usuario
@@ -33,10 +34,10 @@ export const Entry = ({entry, removeEntry}) => {
 
 
     //Función votes
-    const VoteEntry = async ({user.id, entry.id}) => {
+    const VoteEntry = async ({userid, entryid}) => {
       try {
           //lo pasamos al service
-          await voteEntryService({user.id, entry.id});
+          await voteEntryService({userid, entryid, token});
       } catch (error) {
         setError(error.message)
       }
