@@ -31,6 +31,20 @@ export const Entry = ({entry, removeEntry}) => {
       } 
   }
 
+
+    //Función votes
+    const VoteEntry = async ({user.id, entry.id}) => {
+      try {
+          //lo pasamos al service
+          await voteEntryService({user.id, entry.id});
+      } catch (error) {
+        setError(error.message)
+      }
+    }
+
+
+
+
     return <article>
         <h2> 
             <Link to={`/entry/${entry.id}`}>  {entry.title} </Link>  
@@ -46,13 +60,21 @@ export const Entry = ({entry, removeEntry}) => {
       <p>Votes: {entry.votes} </p>
       <p>Status: {entry.status}</p>
 
-      
+        {/*función delete entry */}
         {user && user.role === "admin" ? (
         <section>
           <button onClick={() => deleteEntry(entry.id)} >Delete Entry</button>
           {error ? <p>{error} </p> : null }
         </section>
         ) : null}
+
+          {/*botón de votes */}
+          {user ? (
+            <section>
+              <button onClick={() => VoteEntry(user.id, entry.id)} >Votar</button>
+            </section>
+          ) : null}
+
         
     </article>
 }
