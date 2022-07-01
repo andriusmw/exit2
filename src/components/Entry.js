@@ -9,9 +9,7 @@ export const Entry = ({entry, removeEntry}) => {
   const {user, token} = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  //estados para userid y entryid
-  const [userid, setUserId] = useState("");
-  const [entryid, setEntryId] = useState("");
+ 
 
   //creamos funcion deleteEntry
   const deleteEntry = async (id) => {
@@ -37,12 +35,21 @@ export const Entry = ({entry, removeEntry}) => {
 
 
     //Función votes
-    const VoteEntry = async ({userid, entryid}) => {
+    const VoteEntry = async () => {
+
+      console.log("user.id en boton votar =" + user.id )
+      console.log("entry.id en boton votar =" + entry.id )
+
+  
+      let userId = user.id;
+      let entryId = entry.id;
+      console.log("userid en boton votar =" + userId )
+      console.log("entryid en boton votar =" + entryId )
       try {
           //lo pasamos al service
-          console.log("userid en voteentry=" + userid )
-          console.log("entryid en voteentry=" + entryid )
-          await voteEntryService({userid, entryid, token});
+          console.log("userid en voteentry=" + userId )
+          console.log("entryid en voteentry=" + entryId )
+          await voteEntryService({userId, entryId, token});
       } catch (error) {
         setError(error.message)
       }
@@ -78,12 +85,8 @@ export const Entry = ({entry, removeEntry}) => {
           {user ? (
             <section>
               <button onClick={() => {
-                console.log("user.id en boton votar =" + user.id )
-                console.log("entry.id en boton votar =" + entry.id )
-                setUserId(user.id);
-                setEntryId(entry.id);
-             
-                VoteEntry(userid, entryid)}} >Votar</button>
+                
+                VoteEntry()}} >Votar</button>
               
             </section>
           ) : null}

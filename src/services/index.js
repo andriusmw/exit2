@@ -143,17 +143,17 @@ export const deleteEntryService = async ({id, token}) => {
 
 //---------------------------------- VOTE ENTRY SERVICE ------------------------
 
-export const voteEntryService = async ({userid, entryid, token}) => {
+export const voteEntryService = async ({userId, entryId, token}) => {
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/votes/`,{
         method: "POST",
         headers: {
             Authorization: "BEARER " + token,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({userid, entryid})
+        body: JSON.stringify({userId, entryId})
     });
 
-    console.log("userid=" + userid + "entryid=" + entryid )
+    console.log("userid=" + userId + "entryid=" + entryId )
     //le estoy pasando undefined a userid y entryid
     const json = await response.json();
 
