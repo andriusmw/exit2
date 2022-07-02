@@ -145,3 +145,30 @@ export const deleteEntryService = async ({id, token}) => {
     }
   
 }
+
+
+//------------------------ EDIT ENTRY SERVICE -------------------
+
+export const editEntryService = async ({idEntry, data, token}) => {
+    console.log("token")
+    console.log(token)
+    console.log("body.data")
+    console.log(data)
+    console.log(idEntry)
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/entries/${idEntry}`,{
+        method: "PATCH",
+        body: data,
+        headers: {
+            Authorization: "BEARER " +  token,
+        },
+    });
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        console.log(json)
+        throw new Error(json.message);
+    }
+   
+    return json.data;
+};
