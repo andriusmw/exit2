@@ -1,77 +1,72 @@
-
 //poner aquí servicio getAllEntrysService
 //WITHVOTES
 
 export const getAllEntriesWithVotesService = async () => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND}/votes`);
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/votes`);
 
-    const json = await response.json();
+  const json = await response.json();
 
-    if(!response.ok) {
-        throw new Error(json.message);
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
 
-    }
-
-    return json.data;
+  return json.data;
 };
-
 
 //poner aquí servicio getSingleEntryService
 
 export const getSingleEntryService = async (id) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND}/entries/votes/${id}`);
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/entries/votes/${id}`
+  );
 
-    const json = await response.json();
+  const json = await response.json();
 
-    if(!response.ok) {
-        throw new Error(json.message);
-    }
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
 
-    return json.data;
-}
-
+  return json.data;
+};
 
 //--------------------register service-------------------------------------
 
+export const registerUserService = async ({ name, email, password }) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, email, password }),
+  });
 
-export const registerUserService = async ({name,email,password}) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND}/users`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({name,email,password})
-    });
+  const json = await response.json();
 
-    const json = await response.json();
-
-    if(!response.ok) {
-        throw new Error(json.message);
-    } else {
-        alert("Usuario registrado, comprueba tu correo para activar tu cuenta")
-    }
+  if (!response.ok) {
+    throw new Error(json.message);
+  } else {
+    alert("Usuario registrado, comprueba tu correo para activar tu cuenta");
+  }
 };
 
 //------------------- LOGIN SERVICE -----------------
 
-export const loginUserService = async ({email,password}) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND}/login`,
-    {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({email,password})
-    });
+export const loginUserService = async ({ email, password }) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  });
 
-    const json = await response.json();
+  const json = await response.json();
 
-    if(!response.ok) {
-        throw new Error(json.message)
-    }
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
 
-    return json.data;
-
+  return json.data;
 };
 
 //-------------------- GET USER DATA -------------------------
@@ -100,48 +95,69 @@ export const getMyUserDataService = async (token) => {
   }
 };
 
-
 //--------------------------- CREATE ENTRY ----------------------
 
-export const sendEntryService = async ({data, token}) => {
-    console.log("token")
-    console.log(token)
-    console.log("body.data")
-    console.log(data)
-    const response = await fetch(`${process.env.REACT_APP_BACKEND}/entries`,{
-        method: "POST",
-        body: data,
-        headers: {
-            Authorization: "BEARER " +  token,
-        },
-    });
+export const sendEntryService = async ({ data, token }) => {
+  console.log("token");
+  console.log(token);
+  console.log("body.data");
+  console.log(data);
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/entries`, {
+    method: "POST",
+    body: data,
+    headers: {
+      Authorization: "BEARER " + token,
+    },
+  });
 
-    const json = await response.json();
+  const json = await response.json();
 
-    if(!response.ok) {
-        console.log(json)
-        throw new Error(json.message);
-    }
-   
-    return json.data;
+  if (!response.ok) {
+    console.log(json);
+    throw new Error(json.message);
+  }
+
+  return json.data;
 };
-
 
 //------------------ DELETE ENTRY SERVICE --------------
 
-export const deleteEntryService = async ({id, token}) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND}/entries/${id}`,{
-        method: "DELETE",
-        headers: {
-            Authorization: "BEARER " +  token,
-        },
-    });
-    const json = await response.json();
-
-    if(!response.ok) {
-        console.log("error al borrar")
-        console.log(json)
-        throw new Error(json.message);
+export const deleteEntryService = async ({ id, token }) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/entries/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: "BEARER " + token,
+      },
     }
-  
-}
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    console.log("error al borrar");
+    console.log(json);
+    throw new Error(json.message);
+  }
+};
+
+//--------------------EDIT ENTRY SERVICE--------------------
+
+export const editEntryService = async ({ id, token }) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/entries/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: "BEARER " + token,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    console.log("error al editar");
+    console.log(json);
+    throw new Error(json.message);
+  }
+};
