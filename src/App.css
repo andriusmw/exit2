@@ -60,6 +60,7 @@ body {
 main {
   background-color: plum;
   flex-grow: 1;
+  min-height: 83vh;
  
 }
 
