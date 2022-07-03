@@ -6,7 +6,10 @@ import useEntries from "../hooks/useEntries";
 import { EntriesList } from "../components/EntriesList";
 import { ErrorMessage } from "../components/ErrorMesage";
 
+import { BusquedaBarrio } from "../components/busquedaBarrio";
+
 export const HomePage =  () => {
+  
 
     const {entries, loading, error, addEntry, removeEntry} = useEntries();
     const {user} = useContext(AuthContext);
@@ -26,7 +29,9 @@ export const HomePage =  () => {
     return <section>
        {user && (user.role === "admin") ? <NewEntry addEntry={addEntry} /> : null }
 
-        <h1>Últimos Entradas</h1>
+       <h2>Búsqueda: </h2>
+        <BusquedaBarrio/>
+        <h1>Últimas Entradas: </h1>
         <EntriesList entries={entries} removeEntry={removeEntry} />
     </section>
 
