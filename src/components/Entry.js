@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import {AuthContext} from "../context/AuthContext"
 import { deleteEntryService } from "../services"
 import { editEntryService } from "../services"
+import { voteEntryService } from "../services"
 
 export const Entry = ({entry, removeEntry}) => {
   //importamos el contexto del usuario
@@ -40,8 +41,30 @@ export const Entry = ({entry, removeEntry}) => {
 
   }
 
+         //Función votes
+    const VoteEntry = async () => {
 
-        //*---------------------------------------------FUNCION EDIT ENTRY ------------------------------------------------
+      console.log("user.id en boton votar =" + user.id )
+      console.log("entry.id en boton votar =" + entry.id )
+
+  
+      let userId = user.id;
+      let entryId = entry.id;
+      console.log("userid en boton votar =" + userId )
+      console.log("entryid en boton votar =" + entryId )
+      try {
+          //lo pasamos al service
+          console.log("userid en voteentry=" + userId )
+          console.log("entryid en voteentry=" + entryId )
+          await voteEntryService({userId, entryId, token});
+      } catch (error) {
+        setError(error.message)
+      }
+    }
+
+
+
+        //*---------FUNCION EDIT ENTRY ------------
 
         const EditEntry = async (e) => {
           e.preventDefault();
@@ -82,6 +105,18 @@ export const Entry = ({entry, removeEntry}) => {
       <p>Neighborhood: {entry.neighborhood}</p>
       <p>Votes: {entry.votes} </p>
       <p>Status: {entry.status}</p>
+
+
+         {/*botón de votes */}
+         {user ? (
+            <section>
+              <button onClick={() => {
+                
+                VoteEntry()}} >Votar</button>
+              
+            </section>
+          ) : null}
+
 
         {/*cargar boton delete */}
         {user && user.role === "admin" ? (
