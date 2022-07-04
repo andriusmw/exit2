@@ -143,14 +143,15 @@ export const deleteEntryService = async ({ id, token }) => {
 
 //--------------------EDIT ENTRY SERVICE--------------------
 
-export const editEntryService = async ({ id, token }) => {
+export const editEntryService = async ({ id, token, entry }) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/entries/${id}`,
     {
       method: "PATCH",
       headers: {
-        Authorization: "BEARER " + token,
+        Authorization: "Bearer " + token,
       },
+      body: JSON.stringify(entry),
     }
   );
   const json = await response.json();
