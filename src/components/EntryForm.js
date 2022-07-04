@@ -17,14 +17,13 @@ export const EntryForm = ({ addEntry, entry }) => {
   const [sending, setSending] = useState(false);
   const { token } = useContext(AuthContext);
   //estados para control de los inputs
-  const [title, setTitle] = useState(oldTitle || ""); //Si existe un oldTitle lo usa como estado principal y si no el estado de title es una string vacía (para crear un nuevo title)
+  const [title, setTitle] = useState(oldTitle || ""); //Si existe un oldTitle lo usa como estado principal y si no el estado de title es una string vacía
   const [description, setDescr] = useState(oldDescription || "");
   const [city, setCity] = useState(oldCity || "");
   const [neighborhood, setNeigh] = useState(oldNeighborhood || "");
   const [status, setStatus] = useState(oldStatus || "");
   const imageInputRef = useRef();
 
-  //Crear una función editEntry. Lo mismo pero en vez de con FormData con un objeto normal y pasarle por parámetros el id, token y entry.
   const createEntry = async (e) => {
     e.preventDefault();
 
@@ -53,14 +52,12 @@ export const EntryForm = ({ addEntry, entry }) => {
     }
   };
 
+  //Crear una función editEntry. Lo mismo pero en vez de con FormData con un objeto normal y pasarle por parámetros el id, token y entry.
   const editEntry = async (e) => {
     e.preventDefault();
 
     try {
       setSending(true);
-
-      // FormData es un objeto con características especiales, la única manera de pasarle los inputs es mediante el método .append
-      // Se usa FormData para enviar los ficheros al BackEnd.
 
       await editEntryService({
         id,
@@ -78,8 +75,6 @@ export const EntryForm = ({ addEntry, entry }) => {
 
   return (
     <form onSubmit={entry ? editEntry : createEntry}>
-      {" "}
-      //
       <h1>Add new Entry</h1>
       <fieldset>
         <label htmlFor="title">Title: </label>
