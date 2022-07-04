@@ -14,7 +14,7 @@ export const HomePage =  () => {
     const {entries, loading, error, addEntry, removeEntry} = useEntries();
     const {user} = useContext(AuthContext);
 
-    if (loading) return <p>cargando entries...</p>;
+    if (loading) return <p>Loading accessibility issues...</p>;
     if (error) return <ErrorMessage message={error}/>;
 
     console.log(entries)
@@ -29,9 +29,9 @@ export const HomePage =  () => {
     return <section>
        {user && (user.role === "admin") ? <NewEntry addEntry={addEntry} /> : null }
 
-       <h2>Búsqueda: </h2>
+       <h2>Search: </h2>
         <BusquedaBarrio/>
-        <h1>Últimas Entradas: </h1>
+        <h1>Latest accessibility issues: </h1>
         <EntriesList entries={entries} removeEntry={removeEntry} />
     </section>
 

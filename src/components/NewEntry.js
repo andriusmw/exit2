@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { sendEntryService } from "../services";
 
+
 export const NewEntry = ({addEntry}) => {
     const [error, setError] = useState("");
     const [sending, setSending] = useState(false);
@@ -13,6 +14,7 @@ export const NewEntry = ({addEntry}) => {
     const [city, setCity] = useState("");
     const [neigh, setNeigh] = useState("");
     const [status, setStatus] = useState("");
+
 
 
     
@@ -35,12 +37,15 @@ export const NewEntry = ({addEntry}) => {
             
             console.log(entry);
             addEntry(entry);
+            window.location.reload(false);
+      
         } catch (error) {
             console.log(error)
             console.log(error.message)
             setError(error.message);
         } finally {
             setSending(false);
+        
         }
     }
  
@@ -48,7 +53,7 @@ export const NewEntry = ({addEntry}) => {
    return (
     
     <form onSubmit={handleForm} >
-        <h1>Add new Entry</h1>
+        <h1>Add new accessibility issue</h1>
 
         <fieldset>
             <label htmlFor="title">Title: </label>
@@ -70,13 +75,13 @@ export const NewEntry = ({addEntry}) => {
             <label htmlFor="neighborhood">Neighbourhood: </label>
             <input type="text" id="neighborhood" name="neighborhood" required onChange={(e) => setNeigh(e.target.value)} />
         </fieldset>    
-        <fieldset>
+        <fieldset className="statusfield">
             <label htmlFor="status">Status: </label>
-            <input type="text" id="status" name="status" required onChange={(e) => setStatus(e.target.value)} />
+            <input type="text" id="status" name="status" defaultValue={"open"}  onChange={(e) => setStatus(e.target.value)} />
         </fieldset>
         
-            <button>Send Entry</button>
-            {sending ? <p>Sending Entry</p> : null}
+            <button>Send</button>
+            {sending ? <p>Sending Issue</p> : null}
             {error ? <p>{error} </p> : null}
 
        

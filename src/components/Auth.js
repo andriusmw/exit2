@@ -9,7 +9,7 @@ export const Auth = () => {
   
 
 
-    return user ? (<p>Bienvenida/o {user.name}
+    return user ? (<p>Wellcome  {user.name}
                     <button onClick={() => logout() } >Logout</button> 
     </p> ) : (<ul>
             <li> <Link to="/register">Register</Link> </li>

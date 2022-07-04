@@ -77,10 +77,27 @@ Footer {
 }
 
 
-/*****media query ***/
+/** campo status form oculto  **/
 
-@media only screen and (min-width: 900px) {
+.statusfield {
+  display: none;
+}
+
+/*****media query ORDENADOR ***/
+
+@media only screen and (min-width: 540px) {
  fieldset {
   margin-right: 50%;
  } 
+
+ main {
+   padding-left: 25%;
+ }
+
+ form {
+  padding-left: 5%;
+ }
+
 }
+
+
