@@ -1,5 +1,6 @@
 
 import { useContext, useState } from "react";
+import swal from "sweetalert";
 import { AuthContext } from "../context/AuthContext";
 import { sendEntryService } from "../services";
 
@@ -38,10 +39,12 @@ export const NewEntry = ({addEntry}) => {
             console.log(entry);
             addEntry(entry);
             window.location.reload(false);
+          //  swal(`Success`,`added`,`success` )
       
         } catch (error) {
             console.log(error)
             console.log(error.message)
+            swal(`Error`,`${error.message}`,`error` )
             setError(error.message);
         } finally {
             setSending(false);

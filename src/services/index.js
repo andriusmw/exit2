@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 
 //poner aquí servicio getAllEntrysService
 //WITHVOTES
@@ -164,11 +165,13 @@ export const voteEntryService = async ({userId, entryId, token}) => {
     const json = await response.json();
 
     if(!response.ok) {
-        alert("ya has votado esta entrada")
+        swal(`Error`,`already voted`,`error` )
+        //alert("ya has votado esta entrada")
         throw new Error(json.message);
         
     } else {
-        alert("votado correctamente")
+        swal(`Success`,`voted `,`success` )
+        //alert("votado correctamente")
     }
 };
 

@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { loginUserService } from "../services";
+import swal from "sweetalert";
 
 export const LoginPage = () => {
   //Controlamos los estados de los input
@@ -29,6 +30,7 @@ export const LoginPage = () => {
       navigate("/");
       //redigirimos al home
     } catch (error) {
+      swal(`Error`,`${error.message}`,`error` )
       setError(error.message);
     }
   };

@@ -5,6 +5,7 @@ import {AuthContext} from "../context/AuthContext"
 import { deleteEntryService } from "../services"
 import { editEntryService } from "../services"
 import { voteEntryService } from "../services"
+import swal from "sweetalert"
 
 export const Entry = ({entry, removeEntry}) => {
   //importamos el contexto del usuario
@@ -54,10 +55,11 @@ export const Entry = ({entry, removeEntry}) => {
       console.log("entryid en boton votar =" + entryId )
       try {
           //lo pasamos al service
-          console.log("userid en voteentry=" + userId )
-          console.log("entryid en voteentry=" + entryId )
+          //console.log("userid en voteentry=" + userId )
+          //console.log("entryid en voteentry=" + entryId )
           await voteEntryService({userId, entryId, token});
       } catch (error) {
+        swal(`Error`,`${error.message}`,`error` )
         setError(error.message)
       }
     }
@@ -84,6 +86,7 @@ export const Entry = ({entry, removeEntry}) => {
           } catch (error) {
               console.log(error)
               console.log(error.message)
+              swal(`Error`,`${error.message}`,`error` )
               setError(error.message);
           } finally {
               setSending(false);
