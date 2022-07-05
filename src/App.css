@@ -37,8 +37,10 @@
   }
 }*/
 
+/*----------------------------------------- ESTILOS GENERALES -----------------------------------------*/
 Header {
   background-color:aquamarine;
+  text-align: center;
 }
 
 
@@ -46,7 +48,7 @@ Header {
 * {
   margin: 0;
  /* padding: 0;*/
-  padding-right: 2px;
+  /*padding-right: 2px;*/
   box-sizing: border-box;
 }
 
@@ -68,22 +70,38 @@ fieldset {
   border-color: aqua;
 }
 
-img {
-  max-width: 100%;
-}
-
-Footer {
-  background-color:aquamarine;
-}
-
-
 /** campo status form oculto  **/
 
 .statusfield {
   display: none;
 }
 
-/*****media query ORDENADOR ***/
+.liheader {
+  border: none;
+}
+
+/**-------------------- para las tarjetitas de los problemas de acc.---------------- */
+img {
+  max-width: 100%;
+}
+
+
+li {
+  border: 2px solid aqua;
+  max-inline-size: fit-content;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/*----------------------------------- footer---------------------------------------- */
+Footer {
+  background-color:aquamarine;
+  text-align: center;
+}
+
+
+
+/*****-------------------------- media query ORDENADOR -------------------------------***/
 
 @media only screen and (min-width: 540px) {
  fieldset {

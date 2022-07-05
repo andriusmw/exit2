@@ -54,9 +54,10 @@ export const NewEntry = ({addEntry}) => {
  
 
    return (
-    
+    <>
+    <h1>Add new accessibility issue</h1>
     <form onSubmit={handleForm} >
-        <h1>Add new accessibility issue</h1>
+        
 
         <fieldset>
             <label htmlFor="title">Title: </label>
@@ -90,5 +91,7 @@ export const NewEntry = ({addEntry}) => {
        
 
     </form>
+    
+</>
    ) 
 }
