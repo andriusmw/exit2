@@ -171,6 +171,7 @@ export const voteEntryService = async ({userId, entryId, token}) => {
         
     } else {
         swal(`Success`,`voted `,`success` )
+       
         //alert("votado correctamente")
     }
 };

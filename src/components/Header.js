@@ -9,7 +9,7 @@ export const Header = () => {
 
     return (
         <header>
-            <h1> <Link to="/">EXIT2</Link> </h1>
+            <h1 className="titleclass"> <Link to="/">EXIT2</Link> </h1>
             <h3>Your app to make your city more accessible</h3>
             <nav>
                 <Auth />

@@ -37,9 +37,11 @@ export const NewEntry = ({addEntry}) => {
             const entry = await sendEntryService({data,token});
             
             console.log(entry);
+            console.log("entry photo:" + entry.photo)
             addEntry(entry);
-            window.location.reload(false);
+            //window.location.reload(false);
           //  swal(`Success`,`added`,`success` )
+          setError("");
       
         } catch (error) {
             console.log(error)

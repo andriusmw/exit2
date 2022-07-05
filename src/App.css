@@ -39,11 +39,41 @@
 
 /*----------------------------------------- ESTILOS GENERALES -----------------------------------------*/
 Header {
-  background-color:aquamarine;
+  background-color: #0D38BF ;
   text-align: center;
 }
 
+/**---------links ----------*/
+.titleclass {
+  color: red;
+}
 
+link {
+  color: red;
+}
+
+link:active {
+  color: red;
+}
+
+link:visited {
+  color: red;
+}
+
+
+
+a {
+  color: #C5100D;
+}
+
+a:active {
+  color: #C5100D;
+}
+
+a:visited {
+  color: #C5100D;
+}
+/*-----------------------*/
 
 * {
   margin: 0;
@@ -51,23 +81,32 @@ Header {
   /*padding-right: 2px;*/
   box-sizing: border-box;
 }
-
+/*
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+} */
+
+ #root {
+  
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh 
  
-}
+ }
+
 
 main {
-  background-color: plum;
+  background-color: whitesmoke;
   flex-grow: 1;
-  min-height: 83vh;
+  /*min-height: 83vh;*/
  
 }
 
 fieldset {
-  border-color: aqua;
+  border-color: #0D38BF;
 }
 
 /** campo status form oculto  **/
@@ -76,8 +115,12 @@ fieldset {
   display: none;
 }
 
-.liheader {
+ .liheader {
   border: none;
+  color: red;
+  font-size: larger;
+  font-family: cursive;
+
 }
 
 /**-------------------- para las tarjetitas de los problemas de acc.---------------- */
@@ -87,16 +130,19 @@ img {
 
 
 li {
-  border: 2px solid aqua;
+  border: 2px solid #0D38BF;
   max-inline-size: fit-content;
   margin-top: 5px;
+  margin-bottom: 5px;
   text-align: center;
+  list-style: none;
 }
 
 /*----------------------------------- footer---------------------------------------- */
 Footer {
-  background-color:aquamarine;
+  background-color:#0D38BF;
   text-align: center;
+  color: antiquewhite;
 }
 
 

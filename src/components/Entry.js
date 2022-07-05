@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react"
+import { useContext, useState, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {AuthContext} from "../context/AuthContext"
 import { deleteEntryService } from "../services"
@@ -15,6 +15,15 @@ export const Entry = ({entry, removeEntry}) => {
   //estado visibilidad formulario editar
   const [visible, setVisible] = useState(false)
   const [sending, setSending] = useState(false);
+  //CREAMOS ESTADOS DE LOS CAMPOS DE LA ENTRADA
+  const [titleEntry, setTitleEntry] = useState("");
+  const [descrEntry, setDescrEntry] = useState("");
+  //const [photoEntry, setPhotoEntry] = useState("");
+  let imageInputRef = useRef();
+  const [cityEntry, setCityEntry] = useState("");
+  const [neighEntry, setNeighEntry] = useState("");
+  const [statusEntry, setStatusEntry] = useState("");
+
  
 
   //creamos funcion deleteEntry
@@ -71,6 +80,8 @@ export const Entry = ({entry, removeEntry}) => {
         const EditEntry = async (e) => {
           e.preventDefault();
          let idEntry = entry.id
+
+        
   
         //  console.log("title: "+ title);
      
@@ -79,10 +90,13 @@ export const Entry = ({entry, removeEntry}) => {
         
             
               const data = new FormData(e.target);
+              console.log("data:")
+              console.log(data)
               const entry = await editEntryService({idEntry, data,token});
               
               console.log(entry);
-           
+              setError("");
+              navigate(0);
           } catch (error) {
               console.log(error)
               console.log(error.message)
@@ -105,8 +119,9 @@ export const Entry = ({entry, removeEntry}) => {
           alt={entry.title}
         />
       ) : null}
+      <p>City: {entry.city} </p>
       <p>Neighborhood: {entry.neighborhood}</p>
-      <p>Votes: {entry.votes} </p>
+      <p>Votes: {entry.votes || "0"} </p>
       <p>Status: {entry.status}</p>
 
 
@@ -132,7 +147,21 @@ export const Entry = ({entry, removeEntry}) => {
         {/*Cargar boton editar */}
         {user && user.role === "admin" ? (
           <section>
-            <button onClick={() => { setVisible(true)}} >EDITAR</button>
+            <button onClick={() => { 
+              
+              setVisible(true)
+               //SET ESTADOS para que aparezcan los campos rellenos en el form editar
+               setTitleEntry(entry.title);
+               setDescrEntry(entry.description);
+              // setPhotoEntry(entry.photo);
+              // imageInputRef = entry.photo
+               setCityEntry(entry.city);
+               setNeighEntry(entry.neighborhood);
+               setStatusEntry(entry.status);
+
+              
+              
+              }} >EDITAR</button>
             {error ? <p>{error} </p> : null }
           </section>
         ): null}
@@ -144,27 +173,27 @@ export const Entry = ({entry, removeEntry}) => {
     
             <fieldset>
                 <label htmlFor="title">Title: </label>
-                <input type="text" id="title" name="title"  />
+                <input type="text" id="title" name="title" defaultValue={titleEntry}  />
             </fieldset>
             <fieldset>
                 <label htmlFor="description">Description: </label>
-                <input type="text" id="description" name="description" />
+                <input type="text" id="description" name="description" defaultValue={descrEntry} />
             </fieldset>    
             <fieldset>
                 <label htmlFor="image">Image (optional): </label>
-                <input type="file" id="image" name="image"  />
+                <input type="file" id="image" name="image" /*defaultValue={photoEntry} */ />
             </fieldset>
             <fieldset> 
                 <label htmlFor="city">City: </label>
-                <input type="text" id="city" name="city" />
+                <input type="text" id="city" name="city" defaultValue={cityEntry} />
            </fieldset>
            <fieldset>
                 <label htmlFor="neighborhood">Neighbourhood: </label>
-                <input type="text" id="neighborhood" name="neighborhood"  />
+                <input type="text" id="neighborhood" name="neighborhood" defaultValue={neighEntry} />
             </fieldset>    
             <fieldset>
                 <label htmlFor="status">Status: </label>
-                <input type="text" id="status" name="status"  />
+                <input type="text" id="status" name="status" defaultValue={statusEntry}  />
             </fieldset>
             
                 <button>Send Entry</button>
