@@ -69,7 +69,7 @@ export const Entry = ({entry, removeEntry}) => {
           await voteEntryService({userId, entryId, token});
       } catch (error) {
         swal(`Error`,`${error.message}`,`error` )
-        setError(error.message)
+        setError("")
       }
     }
 

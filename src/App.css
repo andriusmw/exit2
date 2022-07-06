@@ -42,37 +42,49 @@ Header {
   background-color: #0D38BF ;
   text-align: center;
 }
+/*------- titulo pag -------*/
+
+h1 .titleclass {
+  color: red;
+}
+
+/*------- titulo secciones -----*/
+
+h2 {
+  padding-top: 5px;
+}
 
 /**---------links ----------*/
-.titleclass {
-  color: red;
+
+
+.liheader {
+  color: white !important;
+  border: none;
+  font-size: larger;
+  font-family: cursive;
+  float: left;
+  padding-left: 15px;
+
 }
 
-link {
-  color: red;
+.liheader:visited {
+  color: white !important;
+  border: none;
+  font-size: larger;
+  font-family: cursive;
+
 }
 
-link:active {
-  color: red;
+.liheader:active {
+  color: white !important;
+  border: none;
+  font-size: larger;
+  font-family: cursive;
+
 }
 
-link:visited {
-  color: red;
-}
 
 
-
-a {
-  color: #C5100D;
-}
-
-a:active {
-  color: #C5100D;
-}
-
-a:visited {
-  color: #C5100D;
-}
 /*-----------------------*/
 
 * {
@@ -115,13 +127,8 @@ fieldset {
   display: none;
 }
 
- .liheader {
-  border: none;
-  color: red;
-  font-size: larger;
-  font-family: cursive;
 
-}
+
 
 /**-------------------- para las tarjetitas de los problemas de acc.---------------- */
 img {
