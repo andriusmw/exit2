@@ -30,10 +30,6 @@ export const Entry = ({ entry, removeEntry }) => {
     }
   };
 
-  //creamos función editEntry:
-  /* ¿Crear un estado que cambia al clickar el botón edit y muestra un formulario?
-     ¿Dar al botón un link hacia una página editEntry? */
-
   return (
     <article>
       <h2>
@@ -46,17 +42,16 @@ export const Entry = ({ entry, removeEntry }) => {
           alt={entry.title}
         />
       ) : null}
+      {/* Un link que nos lleve a getEntriesByNeighborhood */}
       <p>Neighborhood: {entry.neighborhood}</p>
       <p>Votes: {entry.votes} </p>
       <p>Status: {entry.status}</p>
-
       {user && user.role === "admin" ? (
         <section>
           <button onClick={() => deleteEntry(entry.id)}>Delete Entry</button>
           {error ? <p>{error} </p> : null}
         </section>
       ) : null}
-
       {/*       Edit Entry Button         */}
       {user && user.role === "admin" ? (
         <section>
