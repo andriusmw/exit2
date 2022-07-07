@@ -8,6 +8,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { EditEntryPage } from "./pages/EditEntryPage";
+import { NeighborhoodEntriesPage } from "./pages/NeighborhoodEntriesPage";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
           <Route path="/entry/:id" element={<EntryPage />} />
           <Route path="/entry/:id/edit" element={<EditEntryPage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route
+            path="/entries/:neighborhood"
+            element={<NeighborhoodEntriesPage />}
+          />
         </Routes>
       </main>
       <Footer />

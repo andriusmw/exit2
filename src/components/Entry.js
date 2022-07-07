@@ -43,7 +43,9 @@ export const Entry = ({ entry, removeEntry }) => {
         />
       ) : null}
       {/* Un link que nos lleve a getEntriesByNeighborhood */}
-      <p>Neighborhood: {entry.neighborhood}</p>
+      <Link to={`/entries/${entry.neighborhood}`}>
+        <p>Neighborhood: {entry.neighborhood}</p>
+      </Link>
       <p>Votes: {entry.votes} </p>
       <p>Status: {entry.status}</p>
       {user && user.role === "admin" ? (
