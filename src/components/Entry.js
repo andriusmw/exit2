@@ -2,13 +2,13 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { deleteEntryService } from "../services";
-import { editEntryService } from "../services";
+//import { editEntryService } from "../services";
 
 export const Entry = ({ entry, removeEntry }) => {
   //importamos el contexto del usuario
   const { user, token } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [edit, setEdit] = useState(false);
+  //const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
 
   //creamos funcion deleteEntry

@@ -130,19 +130,21 @@ export const EntryForm = ({ addEntry, entry }) => {
           id="status"
           name="status"
           required
-          onChange={(e) => setStatus(e.target.value)}
+          onChange={(e) => setStatus(e.target.selectedIndex.text)}
         >
           <option value={status}>open</option>
           <option value={status}>close</option>
         </select> */}
-        <input
-          type="text"
-          id="status"
-          name="status"
-          required
-          onChange={(e) => setStatus(e.target.value)}
-          value={status}
-        />
+        {
+          <input
+            type="text"
+            id="status"
+            name="status"
+            required
+            onChange={(e) => setStatus(e.target.value)}
+            value={status}
+          />
+        }
       </fieldset>
       <button>Send Entry</button>
       {sending ? <p>Sending Entry</p> : null}
