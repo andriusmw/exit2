@@ -1,7 +1,8 @@
+//import "./style.css";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { deleteEntryService } from "../services";
+import { AuthContext } from "../../context/AuthContext";
+import { deleteEntryService } from "../../services";
 //import { editEntryService } from "../services";
 
 export const Entry = ({ entry, removeEntry }) => {
@@ -31,13 +32,14 @@ export const Entry = ({ entry, removeEntry }) => {
   };
 
   return (
-    <article>
+    <article className="card">
       <h2>
         <Link to={`/entry/${entry.id}`}> {entry.title} </Link>
       </h2>
-      <p>{entry.description}</p>
+      <p>Description: {entry.description}</p>
       {entry.photo ? (
         <img
+          className="img"
           src={`${process.env.REACT_APP_BACKEND}/uploads/${entry.photo}`}
           alt={entry.title}
         />

@@ -1,4 +1,4 @@
-import { Entry } from "./Entry";
+import { Entry } from "./Entry/Entry";
 
 export const EntriesList = ({ entries, removeEntry }) => {
   return entries.length ? (

@@ -1,7 +1,7 @@
 import "./App.css";
-import { Header } from "./components/Header";
+import { Header } from "./components/Header/Header.js";
 import { Footer } from "./components/Footer";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { EntryPage } from "./pages/EntryPage";
 import { LoginPage } from "./pages/LoginPage";

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useEntry from "../hooks/useEntry";
 import { ErrorMessage } from "../components/ErrorMesage";
-import { Entry } from "../components/Entry";
+import { Entry } from "../components/Entry/Entry";
 
 export const EntryPage = () => {
   const { id } = useParams();
