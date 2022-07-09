@@ -126,6 +126,15 @@ export const EntryForm = ({ addEntry, entry }) => {
       </fieldset>
       <fieldset>
         <label htmlFor="status">Status: </label>
+        {/* <select
+          id="status"
+          name="status"
+          required
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option value={status}>open</option>
+          <option value={status}>close</option>
+        </select> */}
         <input
           type="text"
           id="status"
