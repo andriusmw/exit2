@@ -42,7 +42,7 @@ export const Entry = ({ entry, removeEntry }) => {
           alt={entry.title}
         />
       ) : null}
-      {/* Un link que nos lleve a getEntriesByNeighborhood */}
+      <p>City: {entry.city}</p>
       <Link to={`/entries/${entry.neighborhood}`}>
         <p>Neighborhood: {entry.neighborhood}</p>
       </Link>
