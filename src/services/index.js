@@ -162,3 +162,20 @@ export const editEntryService = async ({ id, token, entry }) => {
     throw new Error(json.message);
   }
 };
+
+//---------------GET ENTRIES BY NEIGHBORHOOD--------------
+
+export const getEntriesByNeighborhood = async (neighborhood) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/entries/${neighborhood}`
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    console.log("error al cargar entriesByNeighborhood");
+    console.log(json);
+    throw new Error(json.message);
+  }
+
+  return json.data;
+};
