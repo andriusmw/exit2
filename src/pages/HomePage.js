@@ -9,7 +9,7 @@ export const HomePage = () => {
   const { entries, loading, error, addEntry, removeEntry } = useEntries();
   const { user } = useContext(AuthContext);
 
-  if (loading) return <p>cargando entries...</p>;
+  if (loading) return <p>Loading entries...</p>;
   if (error) return <ErrorMessage message={error} />;
 
   console.log(entries);
@@ -23,7 +23,7 @@ export const HomePage = () => {
     <section>
       {user && user.role === "admin" ? <EntryForm addEntry={addEntry} /> : null}
 
-      <h1>Últimos Entradas</h1>
+      <h1>Last Entries</h1>
       <EntriesList entries={entries} removeEntry={removeEntry} />
     </section>
   );

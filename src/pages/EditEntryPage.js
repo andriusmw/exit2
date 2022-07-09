@@ -8,7 +8,7 @@ export const EditEntryPage = () => {
 
   const { entry, loading, error } = useEntry(id);
 
-  if (loading) return <p>cargando entrada...</p>;
+  if (loading) return <p>Loading entry...</p>;
   if (error) return <ErrorMessage message={error} />;
 
   return (

@@ -114,7 +114,7 @@ export const EntryForm = ({ addEntry, entry }) => {
         />
       </fieldset>
       <fieldset>
-        <label htmlFor="neighborhood">Neighbourhood: </label>
+        <label htmlFor="neighborhood">Neighborhood: </label>
         <input
           type="text"
           id="neighborhood"
