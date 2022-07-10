@@ -51,3 +51,8 @@ img {
   padding: 4px;
   border-radius: 4px;
 }
+
+.buttons :hover {
+  cursor: pointer;
+  font-weight: bold;
+}
