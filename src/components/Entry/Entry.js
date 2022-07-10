@@ -1,4 +1,4 @@
-//import "./style.css";
+import "./style.css";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -33,35 +33,51 @@ export const Entry = ({ entry, removeEntry }) => {
 
   return (
     <article className="card">
-      <h2>
-        <Link to={`/entry/${entry.id}`}> {entry.title} </Link>
-      </h2>
-      <p>Description: {entry.description}</p>
-      {entry.photo ? (
+      <img
+        src="https://images.unsplash.com/photo-1657397658615-5334c00cac92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+        alt="dummy for dev"
+      />
+
+      <div className="info">
+        <h2>
+          <Link to={`/entry/${entry.id}`}> {entry.title} </Link>
+        </h2>
+        <p>Description: {entry.description}</p>
+        <p>City: {entry.city}</p>
+        <Link to={`/entries/${entry.neighborhood}`}>
+          <p>Neighborhood: {entry.neighborhood}</p>
+        </Link>
+        <p>Status: {entry.status}</p>
+      </div>
+
+      {/* {entry.photo ? (
         <img
           className="img"
           src={`${process.env.REACT_APP_BACKEND}/uploads/${entry.photo}`}
           alt={entry.title}
         />
-      ) : null}
-      <p>City: {entry.city}</p>
-      <Link to={`/entries/${entry.neighborhood}`}>
-        <p>Neighborhood: {entry.neighborhood}</p>
-      </Link>
-      <p>Votes: {entry.votes} </p>
-      <p>Status: {entry.status}</p>
-      {user && user.role === "admin" ? (
-        <section>
-          <button onClick={() => deleteEntry(entry.id)}>Delete Entry</button>
-          {error ? <p>{error} </p> : null}
-        </section>
-      ) : null}
-      {/*       Edit Entry Button         */}
-      {user && user.role === "admin" ? (
-        <section>
-          <Link to={`/entry/${entry.id}/edit`}>Edit Entry</Link>
-        </section>
-      ) : null}
+      ) : null} */}
+
+      <div className="buttons">
+        <p>Votes: {entry.votes} </p>
+
+        {/*       Delete Entry Button        */}
+        {user && user.role === "admin" ? (
+          <section>
+            <button onClick={() => deleteEntry(entry.id)}>Delete Entry</button>
+            {error ? <p>{error} </p> : null}
+          </section>
+        ) : null}
+
+        {/*       Edit Entry Button         */}
+        {user && user.role === "admin" ? (
+          <section>
+            <button onClick={<Link to={`/entry/${entry.id}/edit`}></Link>}>
+              Edit Entry
+            </button>
+          </section>
+        ) : null}
+      </div>
     </article>
   );
 };
