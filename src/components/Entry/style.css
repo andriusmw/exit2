@@ -7,12 +7,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-img {
-  max-width: 25%;
-  padding: 12px;
-  object-fit: contain; /* Conseguir que la imagen se ajuste al height de .card (su container) */
-}
-
 .card {
   overflow: hidden;
   height: 200px;
@@ -25,9 +19,16 @@ img {
   justify-content: space-between;
 }
 
+img {
+  flex-grow: 25;
+  max-width: 25%;
+  padding: 12px;
+  object-fit: cover; /* Conseguir que la imagen se ajuste al height de .card (su container) */
+}
+
 .card a {
   text-decoration: none;
-  color: cornflowerblue;
+  color: #00a7e1;
 }
 
 .card p {
@@ -39,20 +40,25 @@ img {
 }
 
 .info {
+  flex-grow: 50;
   padding: 0 24px;
 }
 
 .buttons {
+  flex-grow: 50;
+  max-width: 25%;
   padding: 0 24px;
-}
-
-.buttons button {
-  margin-top: 8px;
-  padding: 4px;
-  border-radius: 4px;
 }
 
 .buttons :hover {
   cursor: pointer;
   font-weight: bold;
+}
+
+button {
+  background-color: #e75a7c;
+  color: #f2f5ea;
+  margin-top: 8px;
+  padding: 4px;
+  border-radius: 4px;
 }
