@@ -3,7 +3,7 @@ import { Entry } from "./Entry";
 
 export const EntriesList = ({entries, removeEntry}) => {
     return entries.length ? (
-    <ul>
+    <ul className="ulEntryList">
         {entries.map((entry) => (
         <li key={entry.id}>
             <Entry entry={entry} removeEntry={removeEntry} /> 

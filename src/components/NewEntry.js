@@ -1,3 +1,6 @@
+//------------------------------------------ IMPORTS -----------------------------------------------
+//
+//--------------------------------------------------------------------------------------------------//
 
 import { useContext, useState } from "react";
 import swal from "sweetalert";
@@ -5,6 +8,12 @@ import { AuthContext } from "../context/AuthContext";
 import { sendEntryService } from "../services";
 
 
+
+//-----------------------------------------FUNCIONES --------------------------------------------------
+//
+//-----------------------------------------------------------------------------------------------------//
+
+//---------------------------------- NEW ENTRY----------------------------
 export const NewEntry = ({addEntry}) => {
     const [error, setError] = useState("");
     const [sending, setSending] = useState(false);
@@ -18,7 +27,7 @@ export const NewEntry = ({addEntry}) => {
 
 
 
-    
+//---------------------------------- HANDLE FORM  ----------------------------
     const handleForm = async (e) => {
         e.preventDefault();
     /* -----PARA CONTROLAR LOS CAMPOS Y VER LO QUE SE PASA A FORMDATA
@@ -55,6 +64,9 @@ export const NewEntry = ({addEntry}) => {
     }
  
 
+    //--------------------------------------------- RETURN ------------------------------------------------
+    //
+    //----------------------------------------------------------------------------------------------------//
    return (
     <>
     <h1>Add new accessibility issue</h1>

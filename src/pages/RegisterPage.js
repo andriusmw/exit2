@@ -1,8 +1,16 @@
+//------------------------------------------IMPORTS -----------------------------------
+//
+//------------------------------------------------------------------------------------//
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUserService } from "../services";
 
+//-----------------------------------------FUNCTIONS -------------------------------
+//
+//-------------------------------------------------------------------------------------//
+
+//---------------register--------------------
 export const RegisterPage = () => {
     const navigate = useNavigate();
 
@@ -13,6 +21,7 @@ export const RegisterPage = () => {
     const [pass2,setPass2] = useState("");
     const [error, setError] = useState("");
 
+    //---------------handleForm---------------
     const HandleForm = async (e) => {
         e.preventDefault();
         setError(""); 
@@ -36,6 +45,9 @@ export const RegisterPage = () => {
 
     }
 
+    //--------------------------------------------- RETURN--------------------------------------------
+    //
+    //------------------------------------------------------------------------------------------------//
 
     return (
     <section>

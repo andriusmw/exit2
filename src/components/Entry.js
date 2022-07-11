@@ -1,4 +1,6 @@
-
+//------------------------------------------ IMPORTS ----------------------------------------------------------------------//
+//
+//-------------------------------------------------------------------------------------------------------------------------//
 import { useContext, useState, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {AuthContext} from "../context/AuthContext"
@@ -18,15 +20,19 @@ export const Entry = ({entry, removeEntry}) => {
   //CREAMOS ESTADOS DE LOS CAMPOS DE LA ENTRADA
   const [titleEntry, setTitleEntry] = useState("");
   const [descrEntry, setDescrEntry] = useState("");
-  //const [photoEntry, setPhotoEntry] = useState("");
-  let imageInputRef = useRef();
+  let imageInputRef = useRef();  //para la imagen
   const [cityEntry, setCityEntry] = useState("");
   const [neighEntry, setNeighEntry] = useState("");
   const [statusEntry, setStatusEntry] = useState("");
-
+  //estado preview photo
+  const [previewPhoto, setPreviewPhoto] = useState("");
  
+ 
+  //------------------------------------------------ FUNCIONES ----------------------------------------------------------------------//
+  //
+  //---------------------------------------------------------------------------------------------------------------------------------//
 
-  //creamos funcion deleteEntry
+  //---------------------------------creamos funcion deleteEntry--------------------------
   const deleteEntry = async (id) => {
       try {
         //primero lo borra usando el service
@@ -51,7 +57,7 @@ export const Entry = ({entry, removeEntry}) => {
 
   }
 
-         //Función votes
+         //--------------------------------Función votes------------------------------------
     const VoteEntry = async () => {
 
       console.log("user.id en boton votar =" + user.id )
@@ -75,7 +81,7 @@ export const Entry = ({entry, removeEntry}) => {
 
 
 
-        //*---------FUNCION EDIT ENTRY ------------
+        //*-------------------------------FUNCION EDIT ENTRY ------------------------------
 
         const EditEntry = async (e) => {
           e.preventDefault();
@@ -89,8 +95,13 @@ export const Entry = ({entry, removeEntry}) => {
               setSending(true);
         
             
-              const data = new FormData(e.target);
-              console.log("data:")
+              const data = new FormData();
+              data.append("title", titleEntry);
+              data.append("description", descrEntry);
+             if (imageInputRef.current.files[0]) {data.append("image", imageInputRef.current.files[0]);}
+              data.append("city", cityEntry);
+              data.append("neighborhood", neighEntry);
+              data.append("status", statusEntry);
               console.log(data)
               const entry = await editEntryService({idEntry, data,token});
               
@@ -108,7 +119,12 @@ export const Entry = ({entry, removeEntry}) => {
       }
    
 
+      //---------------------------------------- RETURN -------------------------------------------------------------------//
+      //
+      //-------------------------------------------------------------------------------------------------------------------//
     return <article>
+      
+          {/*-----------------------------------------------ENTRADA A MOSTRAR-------------------------------------------------*/}
         <h2> 
             <Link to={`/entry/${entry.id}`}>  {entry.title} </Link>  
         </h2>
@@ -153,8 +169,6 @@ export const Entry = ({entry, removeEntry}) => {
                //SET ESTADOS para que aparezcan los campos rellenos en el form editar
                setTitleEntry(entry.title);
                setDescrEntry(entry.description);
-              // setPhotoEntry(entry.photo);
-              // imageInputRef = entry.photo
                setCityEntry(entry.city);
                setNeighEntry(entry.neighborhood);
                setStatusEntry(entry.status);
@@ -166,34 +180,47 @@ export const Entry = ({entry, removeEntry}) => {
           </section>
         ): null}
 
-          {/*FORMULARIO EDITAR */}
+
+          {/*-----------------------------------------------FORMULARIO EDITAR -------------------------------------------------*/}
         {visible ? (
-            <form onSubmit={EditEntry} >
-            <h1>EDITAR ENTRADA</h1>
+            <form onSubmit={EditEntry} className="editform">
+            <h1 className="edith1"  >EDITAR ENTRADA</h1>
     
             <fieldset>
                 <label htmlFor="title">Title: </label>
-                <input type="text" id="title" name="title" defaultValue={titleEntry}  />
+                <input type="text" id="title" name="title" defaultValue={titleEntry} onChange={ (e)=> {setTitleEntry(e.target.value)}} />
             </fieldset>
             <fieldset>
                 <label htmlFor="description">Description: </label>
-                <input type="text" id="description" name="description" defaultValue={descrEntry} />
+                <input type="text" id="description" name="description" defaultValue={descrEntry} onChange={ (e)=> {setDescrEntry(e.target.value)}} />
             </fieldset>    
             <fieldset>
                 <label htmlFor="image">Image (optional): </label>
-                <input type="file" id="image" name="image" /*defaultValue={photoEntry} */ />
+                <input type="file" id="image" name="image"  ref={imageInputRef}
+                onChange={() =>  {setPreviewPhoto(URL.createObjectURL(imageInputRef.current.files[0]))}} />
+                
+                {previewPhoto ? (
+                  //Carga la preview de la foto
+                    <img
+                      src={previewPhoto}
+                      alt={entry.title}
+                    />
+                ) :  <img
+                       src={`${process.env.REACT_APP_BACKEND}/uploads/${entry.photo}`}
+                       alt={entry.title}
+               />}
             </fieldset>
             <fieldset> 
                 <label htmlFor="city">City: </label>
-                <input type="text" id="city" name="city" defaultValue={cityEntry} />
+                <input type="text" id="city" name="city" defaultValue={cityEntry} onChange={ (e)=> {setCityEntry(e.target.value)}} />
            </fieldset>
            <fieldset>
                 <label htmlFor="neighborhood">Neighbourhood: </label>
-                <input type="text" id="neighborhood" name="neighborhood" defaultValue={neighEntry} />
+                <input type="text" id="neighborhood" name="neighborhood" defaultValue={neighEntry} onChange={ (e)=> {setNeighEntry(e.target.value)}} />
             </fieldset>    
             <fieldset>
                 <label htmlFor="status">Status: </label>
-                <input type="text" id="status" name="status" defaultValue={statusEntry}  />
+                <input type="text" id="status" name="status" defaultValue={statusEntry} onChange={ (e)=> {setStatusEntry(e.target.value)}} />
             </fieldset>
             
                 <button>Send Entry</button>

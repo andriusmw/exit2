@@ -1,3 +1,6 @@
+//--------------------------------------------------------- IMPORTS -------------------------------------
+//
+//-------------------------------------------------------------------------------------------------------//
 
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -5,6 +8,11 @@ import { AuthContext } from "../context/AuthContext";
 import { loginUserService } from "../services";
 import swal from "sweetalert";
 
+//-----------------------------------------------FUNCTIONS -----------------------------------------------
+//
+//-------------------------------------------------------------------------------------------------------//
+
+//----------------LOGIN FUNCTION----------------------
 export const LoginPage = () => {
   //Controlamos los estados de los input
   const [email, setEmail] = useState("");
@@ -17,6 +25,7 @@ export const LoginPage = () => {
   //Cargamos el setemailauth para poder usarlo aquí y tener email en el contexto
   //para poder pasarlo a la funcion del contexto: getmyUserDataService
 
+  //-----------------HANDLE FORM ------------------------
   const handleForm = async (e) => {
     e.preventDefault();
     setError("");
@@ -35,6 +44,11 @@ export const LoginPage = () => {
     }
   };
 
+
+  //--------------------------------------------------- RETURN -------------------------------------
+  //
+  //-----------------------------------------------------------------------------------------------//
+  
   return (
     <section>
       <h1>Login</h1>
